@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fenix Tattoo Gallery — Tampa, FL</title>
+<style>
+  :root{
+    --negro:#0c0b0b; --carbon:#161414; --rojo:#a10223; --rojo-vivo:#d4082f;
+    --hueso:#f3ede2; --gris:#9a938a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--negro);color:var(--hueso);font-family:Georgia,'Times New Roman',serif;max-width:640px;margin:0 auto;-webkit-font-smoothing:antialiased}
+  .sans{font-family:'Helvetica Neue',Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(12,11,11,.94);backdrop-filter:blur(6px);border-bottom:1px solid #2a2323;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+  .brand{display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:1px;font-weight:bold;white-space:nowrap}
+  .brand .logo-badge{width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;border:2px solid var(--rojo)}
+  .brand .logo-badge img{width:42px;height:42px;object-fit:cover;border-radius:50%}
+  .brand em{color:var(--rojo-vivo);font-style:normal}
+  .lang{display:flex;gap:6px}
+  .lang button{background:transparent;border:1px solid #4a3f3f;color:var(--gris);padding:5px 10px;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:20px;font-family:'Helvetica Neue',Arial,sans-serif}
+  .lang button.activo{background:var(--rojo);border-color:var(--rojo);color:#fff}
+  /* hero */
+  .hero{position:relative;padding:64px 22px 46px;overflow:hidden;background:radial-gradient(ellipse at 70% 20%,#2b0a10 0%,var(--negro) 60%)}
+  .hero::after{content:"FENIX";position:absolute;right:-18px;bottom:-30px;font-size:120px;font-weight:bold;color:transparent;-webkit-text-stroke:1px #3a1a20;letter-spacing:6px;pointer-events:none}
+  .kicker{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:4px;color:var(--rojo-vivo);margin-bottom:14px}
+  .hero h1{font-size:44px;line-height:1.05;margin-bottom:14px}
+  .hero h1 .dorado{color:var(--rojo-vivo)}
+  .hero p{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--gris);font-size:15px;line-height:1.6;max-width:420px}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;position:relative;z-index:2}
+  .btn{font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;letter-spacing:1px;padding:13px 22px;border-radius:30px;border:1px solid var(--rojo);display:inline-block}
+  .btn.primario{background:var(--rojo);color:#fff;font-weight:bold}
+  .btn.secundario{color:var(--hueso)}
+  /* cinta */
+  .cinta{background:var(--rojo);color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:2px;text-align:center;padding:10px;white-space:nowrap;overflow:hidden}
+  /* secciones */
+  section{padding:44px 22px}
+  .etiqueta{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:4px;color:var(--rojo-vivo);margin-bottom:10px}
+  h2{font-size:30px;margin-bottom:8px}
+  .sub{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--gris);font-size:14px;line-height:1.6;margin-bottom:22px}
+  /* servicios */
+  .serv{background:var(--carbon);border-left:3px solid var(--rojo);padding:18px;margin-bottom:14px;border-radius:0 10px 10px 0}
+  .serv h3{font-size:19px;margin-bottom:6px}
+  .serv p{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--gris);font-size:13.5px;line-height:1.6}
+  /* galeria */
+  .gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .gal figure{position:relative;overflow:hidden;border-radius:10px;background:#1c1a1a}
+  .gal img{width:100%;height:220px;object-fit:cover;display:block;filter:saturate(.85) contrast(1.05)}
+  .gal figcaption{position:absolute;bottom:0;left:0;right:0;font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:2px;color:#cfc6ba;background:rgba(0,0,0,.55);padding:6px 10px}
+  .nota-muestra{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;color:var(--gris);margin-top:12px;font-style:italic}
+  /* artistas */
+  .artistas{background:linear-gradient(180deg,#14090c,var(--negro));text-align:center}
+  .artistas .numero{font-size:52px;color:var(--rojo-vivo);font-weight:bold}
+  .artistas .dato{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:2px;color:var(--gris);margin-bottom:18px}
+  /* qr */
+  .qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .qr-card{background:var(--carbon);border:1px solid #2c2424;border-radius:12px;padding:18px 12px;text-align:center}
+  .qr-card img{width:130px;height:130px;background:#fff;padding:6px;border-radius:8px;margin-bottom:10px}
+  .qr-card p{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12.5px;line-height:1.5;color:var(--gris)}
+  .qr-card strong{color:var(--hueso);display:block;margin-bottom:4px;font-size:13.5px}
+  /* info */
+  .info{background:var(--carbon);border-radius:14px;padding:22px;margin-bottom:14px}
+  .info h3{font-size:17px;margin-bottom:10px;color:var(--rojo-vivo);font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:1px}
+  .info p,.info li{font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:1.7;color:#d8d0c2}
+  .info ul{list-style:none}
+  .info li{display:flex;justify-content:space-between;border-bottom:1px dashed #3a3232;padding:6px 0}
+  /* contacto */
+  .contacto{text-align:center;background:radial-gradient(ellipse at 50% 0%,#2b0a10 0%,var(--negro) 65%)}
+  .tel-grande{font-size:26px;letter-spacing:1px;margin:14px 0 4px}
+  .tel-grande a{color:var(--rojo-vivo);font-weight:bold}
+  .redes{display:flex;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+  .redes a{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;border:1px solid #4a3f3f;padding:9px 18px;border-radius:20px;color:var(--hueso)}
+  footer{padding:26px 22px 40px;text-align:center;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;color:#5d564e;letter-spacing:1px;border-top:1px solid #241d1d}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="logo-badge"><img src="imgs/logo-header.png" alt="Fenix Tattoo Gallery"></span>FENIX <em>TATTOO</em></div>
+  <div class="lang">
+    <button id="btn-es" class="activo" onclick="setLang('es')">ES</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="kicker" data-es="TAMPA, FLORIDA — ESTUDIO DE TATUAJES" data-en="TAMPA, FLORIDA — TATTOO STUDIO">TAMPA, FLORIDA — ESTUDIO DE TATUAJES</div>
+  <h1 data-es="Arte que <span class=&quot;dorado&quot;>permanece</span>" data-en="Art that <span class=&quot;dorado&quot;>endures</span>">Arte que <span class="dorado">permanece</span></h1>
+  <p data-es="Tatuajes de autor, líneas precisas y una experiencia privada creada para cada historia." data-en="Signature tattoos, precise lines, and a private experience crafted for every story.">Tatuajes de autor, líneas precisas y una experiencia privada creada para cada historia.</p>
+  <div class="ctas">
+    <a class="btn primario" href="citas.html" data-es="Agendar cita" data-en="Book appointment">Agendar cita</a>
+    <a class="btn secundario" href="tel:+17865861000" data-es="Llamar ahora" data-en="Call now">Llamar ahora</a>
+    <a class="btn secundario" href="https://wa.me/17865861000" data-es="WhatsApp" data-en="WhatsApp">WhatsApp</a>
+  </div>
+</div>
+
+<div class="cinta" data-es="LUNES A DOMINGO · 9:00 AM – 9:30 PM · COTIZA TU DISEÑO POR WHATSAPP" data-en="MONDAY TO SUNDAY · 9:00 AM – 9:30 PM · GET YOUR DESIGN QUOTE ON WHATSAPP">LUNES A DOMINGO · 9:00 AM – 9:30 PM · COTIZA TU DISEÑO POR WHATSAPP</div>
+
+<section>
+  <div class="etiqueta" data-es="NUESTRO ARTE" data-en="OUR CRAFT">NUESTRO ARTE</div>
+  <h2 data-es="Tatuajes con identidad propia" data-en="Tattoos with their own identity">Tatuajes con identidad propia</h2>
+  <p class="sub" data-es="Cada pieza se diseña desde cero contigo: sin plantillas genéricas, sin prisa." data-en="Every piece is designed from scratch with you: no generic flash, no rushing.">Cada pieza se diseña desde cero contigo: sin plantillas genéricas, sin prisa.</p>
+  <div class="serv">
+    <h3 data-es="Tatuajes de autor" data-en="Signature tattoos">Tatuajes de autor</h3>
+    <p data-es="Líneas precisas y estilo propio en cada pieza, del minimalista al trabajo detallado." data-en="Precise lines and distinctive style in every piece, from minimalist to detailed work.">Líneas precisas y estilo propio en cada pieza, del minimalista al trabajo detallado.</p>
+  </div>
+  <div class="serv">
+    <h3 data-es="Diseño personalizado" data-en="Custom design">Diseño personalizado</h3>
+    <p data-es="Trae tu idea o tu historia: la convertimos en un diseño único para tu piel." data-en="Bring your idea or your story: we turn it into a one-of-a-kind design for your skin.">Trae tu idea o tu historia: la convertimos en un diseño único para tu piel.</p>
+  </div>
+  <div class="serv">
+    <h3 data-es="Experiencia privada" data-en="Private experience">Experiencia privada</h3>
+    <p data-es="Ambiente limpio, cómodo y privado. Cita reservada solo para ti." data-en="Clean, comfortable, private setting. An appointment reserved just for you.">Ambiente limpio, cómodo y privado. Cita reservada solo para ti.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="etiqueta" data-es="RESERVA EN LÍNEA" data-en="BOOK ONLINE">RESERVA EN LÍNEA</div>
+  <h2 data-es="Agenda tu cita en 1 minuto" data-en="Book in 1 minute">Agenda tu cita en 1 minuto</h2>
+  <p class="sub" data-es="Elige tu servicio, tu artista, fecha y hora — y confirma. Sin llamadas, sin espera." data-en="Pick your service, artist, date and time — and confirm. No calls, no waiting.">Elige tu servicio, tu artista, fecha y hora — y confirma. Sin llamadas, sin espera.</p>
+  <div class="ctas">
+    <a class="btn primario" href="citas.html" data-es="Agendar mi cita" data-en="Book my appointment">Agendar mi cita</a>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="etiqueta" data-es="GALERÍA" data-en="GALLERY">GALERÍA</div>
+  <h2 data-es="Trabajo real, piel real" data-en="Real work, real skin">Trabajo real, piel real</h2>
+  <p class="sub" data-es="Una muestra del estilo del estudio. En Instagram está el portafolio completo." data-en="A sample of the studio's style. The full portfolio lives on Instagram.">Una muestra del estilo del estudio. En Instagram está el portafolio completo.</p>
+  <div class="gal">
+    <figure><img src="imgs/gal-1.jpg" alt="Tatuaje muestra 1"><figcaption data-es="MUESTRA" data-en="SAMPLE">MUESTRA</figcaption></figure>
+    <figure><img src="imgs/gal-2.jpg" alt="Tatuaje muestra 2"><figcaption data-es="MUESTRA" data-en="SAMPLE">MUESTRA</figcaption></figure>
+    <figure><img src="imgs/gal-3.jpg" alt="Tatuaje muestra 3"><figcaption data-es="MUESTRA" data-en="SAMPLE">MUESTRA</figcaption></figure>
+    <figure><a href="https://www.instagram.com/fenixtattoogallery_studio/" style="display:flex;align-items:center;justify-content:center;height:220px;background:#1a0d10;font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;letter-spacing:1px;color:var(--rojo-vivo)" data-es="Ver Instagram →" data-en="See Instagram →">Ver Instagram →</a><figcaption>IG</figcaption></figure>
+  </div>
+  <p class="nota-muestra" data-es="Imágenes de muestra con fines ilustrativos." data-en="Sample images for illustration purposes.">Imágenes de muestra con fines ilustrativos.</p>
+</section>
+
+<section class="artistas">
+  <div class="etiqueta" data-es="LA COMUNIDAD" data-en="THE COMMUNITY">LA COMUNIDAD</div>
+  <div class="numero">2K+</div>
+  <div class="dato" data-es="SEGUIDORES EN INSTAGRAM" data-en="INSTAGRAM FOLLOWERS">SEGUIDORES EN INSTAGRAM</div>
+  <p class="sub" style="margin-bottom:0" data-es="Síguenos para ver trabajos nuevos cada semana: @fenixtattoogallery_studio" data-en="Follow us for fresh work every week: @fenixtattoogallery_studio">Síguenos para ver trabajos nuevos cada semana: @fenixtattoogallery_studio</p>
+</section>
+
+<section>
+  <div class="etiqueta" data-es="TU OPINIÓN CUENTA" data-en="YOUR REVIEW MATTERS">TU OPINIÓN CUENTA</div>
+  <h2 data-es="¿Ya te tatuaste con nosotros?" data-en="Got inked with us?">¿Ya te tatuaste con nosotros?</h2>
+  <p class="sub" data-es="Tu reseña en Google nos ayuda a seguir creciendo. Tarda un minuto." data-en="Your Google review helps us keep growing. It takes a minute.">Tu reseña en Google nos ayuda a seguir creciendo. Tarda un minuto.</p>
+  <div class="qr-grid">
+    <div class="qr-card">
+      <img src="qr/qr-resena.png" alt="QR reseña Google">
+      <p><strong data-es="Déjanos tu reseña" data-en="Leave us a review">Déjanos tu reseña</strong><span data-es="Escanea y califica en Google" data-en="Scan and rate on Google">Escanea y califica en Google</span></p>
+    </div>
+    <div class="qr-card">
+      <img src="qr/qr-ubicacion.png" alt="QR ubicación">
+      <p><strong data-es="Encuéntranos" data-en="Find us">Encuéntranos</strong><span data-es="Escanea para abrir el mapa" data-en="Scan to open the map">Escanea para abrir el mapa</span></p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="info">
+    <h3 data-es="HORARIO" data-en="HOURS">HORARIO</h3>
+    <ul>
+      <li><span data-es="Lunes a domingo" data-en="Monday to Sunday">Lunes a domingo</span><span>9:00 AM – 9:30 PM</span></li>
+    </ul>
+  </div>
+  <div class="info">
+    <h3 data-es="UBICACIÓN" data-en="LOCATION">UBICACIÓN</h3>
+    <p>4429 A Gunn Hwy<br>Tampa, FL 33618</p>
+  </div>
+</section>
+
+<section class="contacto">
+  <div class="etiqueta" data-es="RESERVA TU CITA" data-en="BOOK YOUR APPOINTMENT">RESERVA TU CITA</div>
+  <h2 data-es="Tu historia, en tu piel" data-en="Your story, on your skin">Tu historia, en tu piel</h2>
+  <div class="tel-grande"><a href="tel:+17865861000">+1 (786) 586-1000</a></div>
+  <p class="sub" style="margin-bottom:6px"><span data-es="También por WhatsApp al" data-en="Also on WhatsApp at">También por WhatsApp al</span> <a href="https://wa.me/17865861000" style="color:var(--rojo-vivo)">(786) 586-1000</a> · <a href="tel:+18138071659" style="color:var(--gris)">(813) 807-1659</a></p>
+  <div class="redes">
+    <a href="https://www.instagram.com/fenixtattoogallery_studio/">Instagram</a>
+    <a href="https://www.tiktok.com/@fenixtattoogallery">TikTok</a>
+    <a href="https://facebook.com/ArtFenixtattoooStudio">Facebook</a>
+  </div>
+  <div class="ctas" style="justify-content:center">
+    <a class="btn primario" href="https://wa.me/17865861000" data-es="Cotizar mi diseño" data-en="Quote my design">Cotizar mi diseño</a>
+  </div>
+</section>
+
+<footer>
+  FENIX TATTOO GALLERY · TAMPA, FL<br>
+  <span data-es="Propuesta de rediseño web" data-en="Website redesign proposal">Propuesta de rediseño web</span>
+</footer>
+
+<script>
+function setLang(l){
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    el.innerHTML = (l === 'es') ? el.getAttribute('data-es') : el.getAttribute('data-en');
+  });
+  document.getElementById('btn-es').classList.toggle('activo', l === 'es');
+  document.getElementById('btn-en').classList.toggle('activo', l === 'en');
+  try{ localStorage.setItem('fenix-lang', l); }catch(e){}
+}
+(function(){
+  var l = 'es';
+  try{ l = localStorage.getItem('fenix-lang') || 'es'; }catch(e){}
+  setLang(l);
+})();
+</script>
+</body>
+</html>

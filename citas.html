@@ -166,7 +166,7 @@ function localSlots(){
   const parts=S.date.split('-').map(Number);
   const dow=['sun','mon','tue','wed','thu','fri','sat'][new Date(Date.UTC(parts[0],parts[1]-1,parts[2])).getUTCDay()];
   const hours=CFG.hours[dow]||[];
-  const staffIds=S.staff.id==='any'?CFG.staff.filter(s=>s.id!=='any').map(s=>s.id):[S.staff.id];
+  const _real=CFG.staff.filter(s=>s.id!=='any');const staffIds=S.staff.id==='any'?(_real.length?_real.map(s=>s.id):['any']):[S.staff.id];
   const out=[]; const now=Date.now();
   for(const oc of hours){
     const o=oc[0].split(':').map(Number), c=oc[1].split(':').map(Number);
@@ -229,8 +229,8 @@ async function pickPay(id){
   document.querySelectorAll('.grid .card').forEach(c=>c.classList.remove('sel'));
   const el=document.getElementById('pm-'+id); if(el)el.classList.add('sel');
   const area=document.getElementById('payArea');
-  const sid=S.staff.id==='any'?S.slot.staffIds[0]:S.staff.id;
-  const st=CFG.staff.find(s=>s.id===sid);
+  const sid=S.staff.id==='any'?(S.slot.staffIds[0]||'any'):S.staff.id;
+  const st=CFG.staff.find(s=>s.id===sid)||CFG.staff[0];
   S.booking={id:Math.random().toString(36).slice(2,8).toUpperCase(),serviceName:svcName(S.service),
     servicePrice:S.service.precio,staffName:staffName(st),startMs:S.slot.startMs,
     customer:S.customer,payment:{method:id},status:id==='manual'?'confirmed':'pending_payment'};
